@@ -1,7 +1,7 @@
 ﻿
 namespace SOAP_TcKimlikDogrulama
 {
-    partial class Form1
+    partial class FrmTcDorulamaSistemi
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace SOAP_TcKimlikDogrulama
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTcDorulamaSistemi));
             this.lblDogumYili = new System.Windows.Forms.Label();
             this.lblSoyad = new System.Windows.Forms.Label();
             this.lblAd = new System.Windows.Forms.Label();

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SOAP_TcKimlikDogrulama
 {
-    public partial class Form1 : Form
+    public partial class FrmTcDorulamaSistemi : Form
     {
-        public Form1()
+        public FrmTcDorulamaSistemi()
         {
             InitializeComponent();
         }
