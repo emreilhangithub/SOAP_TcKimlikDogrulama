@@ -63,8 +63,8 @@ namespace SOAP_TcKimlikDogrulama
                 Bilgiler bilgiler = new Bilgiler();
 
                 bilgiler.TcKimlikNo = long.Parse(txtTc.Text);
-                bilgiler.Ad = txtAd.Text;
-                bilgiler.Soyad = txtSoyad.Text;
+                bilgiler.Ad = txtAd.Text.ToUpper();
+                bilgiler.Soyad = txtSoyad.Text.ToUpper();
                 bilgiler.DogumYili = Convert.ToInt32(txtDogumYili.Text);
 
 
@@ -91,18 +91,22 @@ namespace SOAP_TcKimlikDogrulama
 
         private void txtTc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar); // HARF GİRİŞİNİ ENGELLEDİK
         }
         private void txtAd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar)
-                 && !char.IsSeparator(e.KeyChar);
+                 && !char.IsSeparator(e.KeyChar); // SAYI GİRİŞİNİ ENGELLEDİK
+
+            e.KeyChar = Char.ToUpper(e.KeyChar); //BÜYÜK HARFE ÇEVİRDİK OTAMATİK
         }
 
         private void txtSoyad_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar)
                   && !char.IsSeparator(e.KeyChar);
+
+            e.KeyChar = Char.ToUpper(e.KeyChar);
         }
 
         private void txtDogumYili_KeyPress(object sender, KeyPressEventArgs e)
