@@ -12,103 +12,77 @@ namespace SOAP_TcKimlikDogrulama
 {
     public partial class FrmTcDorulamaSistemi : Form
     {
+        // Başlık için sabit bir değer oluşturuyoruz.
+        private readonly string _title = "TC KİMLİK DOĞRULAMA SİSTEMİ";
+
+        // Kimlik doğrulayıcı nesnesi tanımlıyoruz.
+        private readonly TCKimlikDogrulayici _dogrulayici;
+
         public FrmTcDorulamaSistemi()
         {
             InitializeComponent();
+
+            // TCKimlikDogrulayici sınıfını kullanarak bir nesne oluşturuyoruz.
+            // Bu nesne, kimlik doğrulama işlemlerini gerçekleştirecek.
+            _dogrulayici = new TCKimlikDogrulayici(new KPSPublicSoapClientAdapter());
+            
+            // Form başlığını ayarlıyoruz.
+            this.Text = _title;
         }
 
-        string title = "TC KİMLİK DOĞRULAMA SİSTEMİ";
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void FrmTcDorulamaSistemi_Load(object sender, EventArgs e)
         {
-            this.Text = title;
+            // Başlık ayarını form yüklenirken de yapabiliriz, burada gerek yok.
+            // this.Text = title;
         }
 
+        // TC Kimlik doğrulama butonuna tıklandığında gerçekleşen olay.
         private void btnTcDogrula_Click(object sender, EventArgs e)
         {
             try
             {
-
-                if
-                    (
-                    string.IsNullOrEmpty(txtTc.Text) || string.IsNullOrEmpty(txtAd.Text) ||
-                    string.IsNullOrEmpty(txtSoyad.Text) || string.IsNullOrEmpty(txtDogumYili.Text)
-                    )
+                // Kullanıcının girdiği bilgileri bir Bilgiler nesnesine atıyoruz.
+                var bilgiler = new Bilgiler
                 {
-                    string message = "Lütfen Tüm Alanları eksiksiz doldurunuz";
-                    MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                    TcKimlikNo = long.Parse(txtTc.Text),
+                    Ad = txtAd.Text,
+                    Soyad = txtSoyad.Text,
+                    DogumYili = int.Parse(txtDogumYili.Text)
+                };
 
-                if
-                   (
-                   txtTc.Text.Length < 11
-                   )
-                {
-                    string message = "Lütfen Tc Kimlik Numarasını  en az 11 Hane Giriniz";
-                    MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if
-                   (
-                   txtDogumYili.Text.Length < 4
-                   )
-                {
-                    string message = "Lütfen Doğum Yılınızı en az 4 Hane giriniz";
-                    MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                Bilgiler bilgiler = new Bilgiler();
-
-                bilgiler.TcKimlikNo = long.Parse(txtTc.Text);
-                bilgiler.Ad = txtAd.Text.ToUpper();
-                bilgiler.Soyad = txtSoyad.Text.ToUpper();
-                bilgiler.DogumYili = Convert.ToInt32(txtDogumYili.Text);
-
-
-                KimlikDogrula.KPSPublicSoapClient kimlik = new KimlikDogrula.KPSPublicSoapClient();
-                var sonuc = kimlik.TCKimlikNoDogrula(bilgiler.TcKimlikNo, bilgiler.Ad, bilgiler.Soyad, bilgiler.DogumYili);
-                if (sonuc)
-                {
-                    string message = " Sayın " + bilgiler.Ad + " " + bilgiler.Soyad + " " + bilgiler.TcKimlikNo + " " + " Numaralı Tc Kimlik Numaranız Doğrulandı";
-                    MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    string message = " Tc Kimlik Bilgileriniz Doğrulanamadı Lütfen Tc Kimlik Numaranızı Kontrol Ediniz";
-                    MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                //// TCKimlikDogrulayici sınıfı üzerinden bilgileri doğrulama işlemi için çağırıyoruz.
+                _dogrulayici.Dogrula(bilgiler);
             }
 
             catch (Exception hata)
             {
+                // Herhangi bir hata oluştuğunda kullanıcıya hata mesajını gösteriyoruz.
                 MessageBox.Show(hata.ToString());
             }
         }
 
+        // Sadece sayı girişine izin veren bir olay.
         private void txtTc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar); // HARF GİRİŞİNİ ENGELLEDİK
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+        // Sadece harf  girişine izin veren bir olay.
         private void txtAd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar)
-                 && !char.IsSeparator(e.KeyChar); // SAYI GİRİŞİNİ ENGELLEDİK
+                 && !char.IsSeparator(e.KeyChar);
 
             e.KeyChar = Char.ToUpper(e.KeyChar); //BÜYÜK HARFE ÇEVİRDİK OTAMATİK
         }
-
+        // Sadece harf  girişine izin veren bir olay.
         private void txtSoyad_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar)
                   && !char.IsSeparator(e.KeyChar);
 
-            e.KeyChar = Char.ToUpper(e.KeyChar);
+            e.KeyChar = Char.ToUpper(e.KeyChar);//BÜYÜK HARFE ÇEVİRDİK OTAMATİK
         }
-
+        // Sadece sayı  girişine izin veren bir olay.
         private void txtDogumYili_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);

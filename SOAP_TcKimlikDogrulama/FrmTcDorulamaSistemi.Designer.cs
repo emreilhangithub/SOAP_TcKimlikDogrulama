@@ -44,7 +44,7 @@ namespace SOAP_TcKimlikDogrulama
             // lblDogumYili
             // 
             this.lblDogumYili.AutoSize = true;
-            this.lblDogumYili.Location = new System.Drawing.Point(121, 177);
+            this.lblDogumYili.Location = new System.Drawing.Point(160, 171);
             this.lblDogumYili.Name = "lblDogumYili";
             this.lblDogumYili.Size = new System.Drawing.Size(94, 20);
             this.lblDogumYili.TabIndex = 23;
@@ -53,7 +53,7 @@ namespace SOAP_TcKimlikDogrulama
             // lblSoyad
             // 
             this.lblSoyad.AutoSize = true;
-            this.lblSoyad.Location = new System.Drawing.Point(144, 135);
+            this.lblSoyad.Location = new System.Drawing.Point(183, 132);
             this.lblSoyad.Name = "lblSoyad";
             this.lblSoyad.Size = new System.Drawing.Size(71, 20);
             this.lblSoyad.TabIndex = 22;
@@ -62,7 +62,7 @@ namespace SOAP_TcKimlikDogrulama
             // lblAd
             // 
             this.lblAd.AutoSize = true;
-            this.lblAd.Location = new System.Drawing.Point(169, 91);
+            this.lblAd.Location = new System.Drawing.Point(208, 85);
             this.lblAd.Name = "lblAd";
             this.lblAd.Size = new System.Drawing.Size(46, 20);
             this.lblAd.TabIndex = 21;
@@ -71,18 +71,18 @@ namespace SOAP_TcKimlikDogrulama
             // lblTc
             // 
             this.lblTc.AutoSize = true;
-            this.lblTc.Location = new System.Drawing.Point(172, 42);
+            this.lblTc.Location = new System.Drawing.Point(97, 42);
             this.lblTc.Name = "lblTc";
-            this.lblTc.Size = new System.Drawing.Size(43, 20);
+            this.lblTc.Size = new System.Drawing.Size(157, 20);
             this.lblTc.TabIndex = 20;
-            this.lblTc.Text = "Tc = ";
+            this.lblTc.Text = "TC Kimlik Numarası =";
             // 
             // txtDogumYili
             // 
             this.txtDogumYili.Location = new System.Drawing.Point(283, 171);
             this.txtDogumYili.MaxLength = 4;
             this.txtDogumYili.Name = "txtDogumYili";
-            this.txtDogumYili.Size = new System.Drawing.Size(135, 26);
+            this.txtDogumYili.Size = new System.Drawing.Size(284, 26);
             this.txtDogumYili.TabIndex = 19;
             this.txtDogumYili.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDogumYili_KeyPress);
             // 
@@ -90,7 +90,7 @@ namespace SOAP_TcKimlikDogrulama
             // 
             this.txtSoyad.Location = new System.Drawing.Point(283, 132);
             this.txtSoyad.Name = "txtSoyad";
-            this.txtSoyad.Size = new System.Drawing.Size(135, 26);
+            this.txtSoyad.Size = new System.Drawing.Size(284, 26);
             this.txtSoyad.TabIndex = 18;
             this.txtSoyad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoyad_KeyPress);
             // 
@@ -98,7 +98,7 @@ namespace SOAP_TcKimlikDogrulama
             // 
             this.txtAd.Location = new System.Drawing.Point(283, 85);
             this.txtAd.Name = "txtAd";
-            this.txtAd.Size = new System.Drawing.Size(135, 26);
+            this.txtAd.Size = new System.Drawing.Size(284, 26);
             this.txtAd.TabIndex = 17;
             this.txtAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAd_KeyPress);
             // 
@@ -107,7 +107,7 @@ namespace SOAP_TcKimlikDogrulama
             this.txtTc.Location = new System.Drawing.Point(283, 42);
             this.txtTc.MaxLength = 11;
             this.txtTc.Name = "txtTc";
-            this.txtTc.Size = new System.Drawing.Size(135, 26);
+            this.txtTc.Size = new System.Drawing.Size(284, 26);
             this.txtTc.TabIndex = 16;
             this.txtTc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTc_KeyPress);
             // 
@@ -115,13 +115,13 @@ namespace SOAP_TcKimlikDogrulama
             // 
             this.btnTcDogrula.Location = new System.Drawing.Point(283, 232);
             this.btnTcDogrula.Name = "btnTcDogrula";
-            this.btnTcDogrula.Size = new System.Drawing.Size(135, 57);
+            this.btnTcDogrula.Size = new System.Drawing.Size(284, 57);
             this.btnTcDogrula.TabIndex = 15;
-            this.btnTcDogrula.Text = "TcDogrula";
+            this.btnTcDogrula.Text = "TC Kimlik Numarası Doğrula";
             this.btnTcDogrula.UseVisualStyleBackColor = true;
             this.btnTcDogrula.Click += new System.EventHandler(this.btnTcDogrula_Click);
             // 
-            // Form1
+            // FrmTcDorulamaSistemi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,9 +136,9 @@ namespace SOAP_TcKimlikDogrulama
             this.Controls.Add(this.txtTc);
             this.Controls.Add(this.btnTcDogrula);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "FrmTcDorulamaSistemi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FrmTcDorulamaSistemi_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
