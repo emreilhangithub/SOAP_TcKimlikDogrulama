@@ -6,7 +6,7 @@
 
 # Proje İçeriği #
 
-1) Proje, bir C# Windows Forms uygulamasıdır.
+1)Proje, bir C# Windows Forms uygulamasıdır.
 Amacı, kullanıcının TC Kimlik numarası doğrulamasını yapmaktır.
 
 2)Temel Bileşenler:
